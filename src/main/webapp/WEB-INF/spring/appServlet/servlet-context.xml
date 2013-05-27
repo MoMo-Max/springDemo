@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:jaxws="http://cxf.apache.org/jaxws"
+	   xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+						    http://www.springframework.org/schema/beans/spring-beans.xsd 
+						    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- <annotation-driven />-->
+	<bean id="paraMethodResolver" 
+        class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver"> 
+        <property name="paramName">
+            <value>act</value>
+        </property> 
+        <property name="defaultMethodName">
+            <value>list</value>
+        </property> 
+    </bean> 
+	
+	
+	<bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+            	<prop key="/index.do">indexController</prop>
+                <prop key="/member.do">memberController</prop>
+                <prop key="/userProfile.do">userProfileFrontController</prop>
+            </props>
+        </property>
+    </bean>
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--<resources mapping="/resources/**" location="/resources/" />-->
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- <context:component-scan base-package="com.oo.spring" />-->
+	
+    <!-- 首頁  -->
+    <bean id ="indexController"
+    		 class="com.oo.spring.controller.front.indexController">
+		<property name="methodNameResolver"> 
+            <ref bean="paraMethodResolver"/> 
+        </property>  
+    	<!-- 以下是頁面跳轉處理 -->	 
+    	<property name="findSuccessView" value="mainindex" />
+    </bean>
+    
+    <!-- 會員 -->
+    <bean id="memberController"
+          class="com.oo.spring.controller.front.memberController">
+         <property name="methodNameResolver"> 
+            <ref bean="paraMethodResolver"/> 
+        </property>  
+        <property name="userProfileService">
+            	<ref bean="userProfileServiceImpl"/>
+     	</property>
+
+    	<property name="idiaryService">
+            	<ref bean="diarySerivceImpl"/>
+     	</property>
+    
+        <!-- 跳轉頁面處理 -->
+        
+        
+       <property name ="listPage" value ="/member/listPage" />
+       <property name="listShow" value="/member/list"/>
+       <property name="diaryListPage" value="/member/diaryList"/>
+       <property name="diaryAdd" value="/member/diaryAdd" />
+       <property name="saveSuccessView" value="member.do?act=diaryList"/> <!-- 新增成功 -->
+    </bean>
+    
+    <bean id="userProfileFrontController"
+    		class="com.oo.spring.controller.front.userProfileFrontController">
+    		<property name="methodNameResolver"> 
+          		 <ref bean="paraMethodResolver"/> 
+       		</property>  
+       		
+       		<property name="greetWebService"> 
+          		 <ref bean="greetingHello2"/> 
+       		</property>  
+       		
+    		<property name="successAdd" value="/userProfile/userProfileAdd"/>
+    		<property name="saveOK" value="mainindex" />
+    		<property name="userProfileService">
+            	<ref bean="userProfileServiceImpl"/>
+       		</property>
+       		<property name="loginOK" value="/member/listPage"/>
+    		
+    </bean>
+  
+
+    <jaxws:client id = "greetingHello2"
+				  serviceClass="com.oo.spring.WS.IHello"
+				  address="http://localhost:8080/MyCXF/geetHell?wsdl"/>
+
+</beans>
