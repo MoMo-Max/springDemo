@@ -3,6 +3,7 @@
 <%@ page import="com.oo.spring.model.diary" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ include file = "../top.jsp" %>
 <% List diList = (List)request.getAttribute("diary"); %>
@@ -29,6 +30,18 @@
 			String title= ((diary)diList.get(i)).getTitle();
 			String content = ((diary)diList.get(i)).getContext();
 			Timestamp  time=((diary)diList.get(i)).getCreateDate();
+			
+		/*
+		
+		for(Map userMap : diList){
+
+            Integer id = new Integer(userMap.get("id").toString());
+            String title = userMap.get("title").toString();
+            String context =  userMap.get("content").toString();
+           
+            
+     */
+		
 
 %>
 <tr><td><%= id %></td> <td><%= title %></td><td><%=content %></td></tr>

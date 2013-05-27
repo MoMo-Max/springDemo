@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,21 +21,16 @@ import com.oo.spring.service.IdiaryService;
 public class diaryServiceImpl implements IdiaryService{
 	
 	 private NamedParameterJdbcTemplate jdbcTemplate;
+	 private JdbcTemplate jdbcTemplate2;
+	 private DataSource dataSource;
 	    
 	    public void setDataSource(DataSource dataSource) {
 	        jdbcTemplate= new NamedParameterJdbcTemplate(dataSource);
+	        jdbcTemplate2= new JdbcTemplate(dataSource);
 	    }
-	   /*  
-	    private DataSource dataSource;
-	    
-	    public void setDataSource(DataSource dataSource) {
-	        this.dataSource = dataSource;
-	    }
-*/
+
 
 	public void save(diary diaryer) {
-		// TODO Auto-generated method stub
-		
 		
 		String sql = "INSERT INTO diary (title,content,createDate) " +
 				"VALUES(:title, :context, :createDate)";
@@ -42,12 +38,12 @@ public class diaryServiceImpl implements IdiaryService{
 	           new BeanPropertySqlParameterSource(diaryer);
 	       
 	       jdbcTemplate.update(sql, namedParameters);
-		
-		
-	       
+
 	}
 	
-	    /*
+	    /*    
+	     * 使用  JDBCTemplate 寫法
+	     * 
 	    public void save(diary diar){
 	    	
 	    	Connection conn = null;
@@ -111,21 +107,23 @@ public class diaryServiceImpl implements IdiaryService{
 	@Override
 	public List list() {
 			
-			List listadd = new ArrayList();
+			List<diary> listadd = new ArrayList<diary>();
 		  	String sql = "SELECT * FROM diary ";
-	        SqlParameterSource paramMap = null;
-			List rows = jdbcTemplate.queryForList(sql, paramMap);
+	       
+		  	List<Map<String, Object>> rows = jdbcTemplate2.queryForList(sql);    
+	       // Iterator it = rows.iterator();
 	        
-	        Iterator it = rows.iterator();
-	        
-	       while(it.hasNext()){
+	       //while(it.hasNext()){
 	    	   
-	            Map userMap = (Map)it.next();
+	            //Map userMap = (Map)it.next();
+			
+			
+			for(Map userMap : rows){
 
 	            Integer id = new Integer(userMap.get("id").toString());
 	            String title = userMap.get("title").toString();
 	            String context =  userMap.get("content").toString();
-
+	            
 	            diary diar = new diary();
 	            diar.setId(id);
 	            diar.setTitle(title);
@@ -133,7 +131,10 @@ public class diaryServiceImpl implements IdiaryService{
 	            listadd.add(diar);       
 	            
 	        }
-	        System.out.println("test?");
+	       	
+	       	System.out.println("用JDBC寫法");
+
+
 			return listadd;
 		
 	}
