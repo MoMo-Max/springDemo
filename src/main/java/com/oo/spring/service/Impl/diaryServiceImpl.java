@@ -33,7 +33,7 @@ public class diaryServiceImpl implements IdiaryService{
 	public void save(diary diaryer) {
 		
 		String sql = "INSERT INTO diary (title,content,createDate) " +
-				"VALUES(:title, :context, :createDate)";
+				"VALUES(:title, :content, :createDate)";
 	       SqlParameterSource namedParameters = 
 	           new BeanPropertySqlParameterSource(diaryer);
 	       
@@ -96,7 +96,7 @@ public class diaryServiceImpl implements IdiaryService{
 	            diary diar = new diary();
 	            diar.setId(i);
 	            diar.setTitle(title);
-	            diar.setContext(context);
+	            diar.setContent(context);
 	            
 	            return diar;
 	        }
@@ -127,7 +127,7 @@ public class diaryServiceImpl implements IdiaryService{
 	            diary diar = new diary();
 	            diar.setId(id);
 	            diar.setTitle(title);
-	            diar.setContext(context);
+	            diar.setContent(context);
 	            listadd.add(diar);       
 	            
 	        }
@@ -136,6 +136,33 @@ public class diaryServiceImpl implements IdiaryService{
 
 
 			return listadd;
+		
+	}
+
+
+	@Override
+	public boolean update(diary diaryer ) {
+		boolean bool=false;
+		String sql = "update diary Set title=:Title ,content=:Content  where id=:Id ";
+		SqlParameterSource namedParameters = 
+		           new BeanPropertySqlParameterSource(diaryer);
+	     if( jdbcTemplate.update(sql, namedParameters)>0){
+	    	 bool=true;
+	     }
+	     
+		
+		return bool;
+	}
+
+
+	@Override
+	public void del(Integer id) {
+		
+		String sql = "Delete from diary where id=:Id";
+		SqlParameterSource paramters= new MapSqlParameterSource("Id", id);
+		
+		jdbcTemplate.update(sql, paramters);
+		
 		
 	}
 

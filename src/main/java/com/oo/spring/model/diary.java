@@ -8,7 +8,7 @@ public class diary {
 	
 	private Integer id;
 	private String title;   
-	private String context;  
+	private String content;  
 	private Timestamp createDate;
 	
 	
@@ -24,11 +24,12 @@ public class diary {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContext() {
-		return context;
+
+	public String getContent() {
+		return content;
 	}
-	public void setContext(String context) {
-		this.context = context;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public Timestamp getCreateDate() {
 		return createDate;

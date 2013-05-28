@@ -13,5 +13,9 @@ public interface IdiaryService {
 	public diary find(Integer id);
 	 
 	public List list();
+	
+	public boolean update(diary diaryer);
+	
+	public void del(Integer id);
 
 }

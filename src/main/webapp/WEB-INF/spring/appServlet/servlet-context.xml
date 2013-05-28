@@ -72,6 +72,8 @@
        <property name="listShow" value="/member/list"/>
        <property name="diaryListPage" value="/member/diaryList"/>
        <property name="diaryAdd" value="/member/diaryAdd" />
+       <property name="diaryFind" value="/member/diaryFind" />
+       
        <property name="saveSuccessView" value="member.do?act=diaryList"/> <!-- 新增成功 -->
     </bean>
     

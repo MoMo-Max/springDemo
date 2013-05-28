@@ -24,9 +24,11 @@ public class memberController extends MultiActionController {
     private String diaryListPage;
     
     private String diaryAdd;
+    private String diaryFind;
     
     private userProfileService userProfileService;
     private IdiaryService IdiaryService;
+    
     private String saveSuccessView; 
     
 
@@ -87,7 +89,7 @@ public class memberController extends MultiActionController {
     	Timestamp now = new Timestamp(System.currentTimeMillis());
 
     	diar.setTitle(title);
-    	diar.setContext(context);
+    	diar.setContent(context);
     	diar.setCreateDate(now);
     	
     	IdiaryService.save(diar);
@@ -96,6 +98,57 @@ public class memberController extends MultiActionController {
     	//return new ModelAndView(new RedirectView("http://localhost:8080/spring/member.do?act=diaryList"));
     	return new ModelAndView(new RedirectView(saveSuccessView));
     	  
+    }
+    public ModelAndView findDiary(HttpServletRequest request,
+			HttpServletResponse response){
+    		
+    	Integer id = Integer.valueOf(request.getParameter("id"));
+    	
+    	diary find = IdiaryService.find(id);
+    	
+    	
+    	
+    	
+    	return new ModelAndView(diaryFind,"diaryfind",find);
+    }
+    public ModelAndView updateDiary(HttpServletRequest request,
+    		HttpServletResponse response){
+    	
+    	System.out.println("this diary update");
+    	
+    	Integer id = Integer.valueOf(request.getParameter("id"));
+    	String title = request.getParameter("title");
+    	String content = request.getParameter("content");
+    	
+    	
+    	
+    	diary di = new diary();
+    	
+    	di.setId(id);
+    	di.setTitle(title);
+    	di.setContent(content);
+    	
+    	if(IdiaryService.update(di)){
+    		System.out.println("successful Update");
+    	}else{
+    		System.out.println("failure update ");
+    	}
+    	
+    	
+    	return new ModelAndView(new RedirectView(saveSuccessView));
+    
+    }
+    public ModelAndView DelDiary(HttpServletRequest request,
+    		HttpServletResponse response){
+    	
+    	Integer id= Integer.valueOf(request.getParameter("id"));
+    	System.out.println("this diary Del");
+    	
+    	IdiaryService.del(id);
+    	
+    	
+    	return new ModelAndView(new RedirectView(saveSuccessView));
+    
     }
 
 
@@ -158,6 +211,14 @@ public class memberController extends MultiActionController {
 
 	public void setSaveSuccessView(String saveSuccessView) {
 		this.saveSuccessView = saveSuccessView;
+	}
+
+	public String getDiaryFind() {
+		return diaryFind;
+	}
+
+	public void setDiaryFind(String diaryFind) {
+		this.diaryFind = diaryFind;
 	}
 	
 
