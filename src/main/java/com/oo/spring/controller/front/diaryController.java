@@ -15,7 +15,7 @@ import com.oo.spring.model.diary;
 import com.oo.spring.service.userProfileService;
 import com.oo.spring.service.IdiaryService;
 
-public class memberController extends MultiActionController {
+public class diaryController extends MultiActionController {
    
    
     private String listPage;

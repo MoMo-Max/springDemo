@@ -12,7 +12,7 @@ diaryAdd<br>
 新增日記<br>
 
 <hr size="5" align="center" noshade width="90%" color="#FFA500">
-<form method ="Post" action="<%=baseUrl%>/member.do?act=save">
+<form method ="Post" action="<%=baseUrl%>/diary.do?act=save">
 	<table>
 		<tr><td>標題<input name="title" type="text"/></td><tr>
 		<tr><td height="200" weight="200">內容	<textarea rows="4" cols="50" name="context"></textarea></td><tr>

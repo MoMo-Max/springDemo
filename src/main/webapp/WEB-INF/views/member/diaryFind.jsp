@@ -12,7 +12,7 @@
 </head>
 <body>
 	
-	<form method="POST" action="<%=baseUrl %>/member.do?act=updateDiary">
+	<form method="POST" action="<%=baseUrl %>/diary.do?act=updateDiary">
 	
 		<input name ="id" type ="hidden" value="<%=di.getId() %>"/>
  		<input  name ="title" type="text" value="<%=di.getTitle() %>" /><br>

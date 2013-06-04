@@ -29,6 +29,8 @@ public class userProfileFrontController extends MultiActionController{
 	private String successAdd;
 	private String SaveOK;
 	private String loginOK;
+	
+	private String loginPage;
 	private IHello greetWebService;   // WebService 測試
 	
 	private userProfileService userProfileService;
@@ -36,14 +38,10 @@ public class userProfileFrontController extends MultiActionController{
 	public ModelAndView list(HttpServletRequest request,
 			HttpServletResponse response){
 		
-		String username=request.getParameter("user");
-		String password=request.getParameter("passwd");
 		
-		System.out.println(username);
-		System.out.println(password);
 		System.out.println("This is List!!");
 		
-		return new ModelAndView(successAdd);
+		return new ModelAndView(loginPage);
 	}
 	public ModelAndView Add(HttpServletRequest request,
 			HttpServletResponse response){
@@ -77,7 +75,7 @@ public class userProfileFrontController extends MultiActionController{
 		userProfileService.save(user);
 		
 		
-		return new ModelAndView(SaveOK);
+		return new ModelAndView(new RedirectView(SaveOK));
 	}
 	public ModelAndView login(HttpServletRequest request,
 			HttpServletResponse response){
@@ -105,10 +103,10 @@ public class userProfileFrontController extends MultiActionController{
 		if(check){
 			request.getSession().setAttribute("account", account);
 			System.out.println("OKLogin");
-			return new ModelAndView(loginOK);
+			return new ModelAndView(new RedirectView(SaveOK));
 		}else{
 			System.out.println("NOKLogin");
-			return new ModelAndView(SaveOK);
+			return new ModelAndView(new RedirectView(SaveOK));
 		}
 	}
 	public ModelAndView loginOut(HttpServletRequest request,
@@ -116,7 +114,7 @@ public class userProfileFrontController extends MultiActionController{
 	
 			request.getSession().invalidate();
 		
-				return new ModelAndView();
+			return new ModelAndView(new RedirectView(SaveOK));
 	}
 	
 	public String getSuccessAdd() {
@@ -150,6 +148,13 @@ public class userProfileFrontController extends MultiActionController{
 	public void setGreetWebService(IHello greetWebService) {
 		this.greetWebService = greetWebService;
 	}
+	public String getLoginPage() {
+		return loginPage;
+	}
+	public void setLoginPage(String loginPage) {
+		this.loginPage = loginPage;
+	}
+	
 	
 	
 

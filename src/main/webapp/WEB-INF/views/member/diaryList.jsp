@@ -36,10 +36,10 @@
 <body>
 <ul>
 	<li>每日日誌</li>
-	<li><a href="<%=baseUrl %>/member.do?act=add">新增</a></li>
+	<li><a href="<%=baseUrl %>/diary.do?act=add">新增</a></li>
 </ul>
 <br>
-	<form name ="find2" method="POST" action="<%= baseUrl %>/member.do" >
+	<form name ="find2" method="POST" action="<%= baseUrl %>/diary.do" >
 		<input type="hidden" name = "id" />
 		<input type="hidden" name = "act"  value="findDiary"/>
 	</form>

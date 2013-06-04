@@ -18,7 +18,7 @@
 <h1>會員中心  <%=account %></h1>
 <%=baseUrl %><br>
 <br><a href="<%=baseUrl %>/member.do?act=list" >會員資料</a>
-<br><a href="<%=baseUrl %>/member.do?act=diaryList" >每日工作日記</a>
+<br><a href="<%=baseUrl %>/diary.do?act=diaryList" >每日工作日記</a>
 <br><a href="123" >123</a>
 
 </body>

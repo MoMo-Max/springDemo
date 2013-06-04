@@ -25,6 +25,7 @@
             <props>
             	<prop key="/index.do">indexController</prop>
                 <prop key="/member.do">memberController</prop>
+                <prop key="/diary.do">diaryController</prop>
                 <prop key="/userProfile.do">userProfileFrontController</prop>
             </props>
         </property>
@@ -87,15 +88,41 @@
           		 <ref bean="greetingHello2"/> 
        		</property>  
        		
+       		<property name="loginPage" value="/userProfile/login"/>
     		<property name="successAdd" value="/userProfile/userProfileAdd"/>
-    		<property name="saveOK" value="mainindex" />
+    		<property name="saveOK" value="index.do" />
     		<property name="userProfileService">
             	<ref bean="userProfileServiceImpl"/>
        		</property>
        		<property name="loginOK" value="/member/listPage"/>
     		
     </bean>
-  
+  	
+  	<!-- 日記 -->
+    <bean id="diaryController"
+          class="com.oo.spring.controller.front.diaryController">
+         <property name="methodNameResolver"> 
+            <ref bean="paraMethodResolver"/> 
+        </property>  
+        <property name="userProfileService">
+            	<ref bean="userProfileServiceImpl"/>
+     	</property>
+
+    	<property name="idiaryService">
+            	<ref bean="diarySerivceImpl"/>
+     	</property>
+    
+        <!-- 跳轉頁面處理 -->
+        
+        
+       <property name ="listPage" value ="/member/listPage" />
+       <property name="listShow" value="/member/list"/>
+       <property name="diaryListPage" value="/member/diaryList"/>
+       <property name="diaryAdd" value="/member/diaryAdd" />
+       <property name="diaryFind" value="/member/diaryFind" />
+       
+       <property name="saveSuccessView" value="member.do?act=diaryList"/> <!-- 新增成功 -->
+    </bean>
 
     <jaxws:client id = "greetingHello2"
 				  serviceClass="com.oo.spring.WS.IHello"
