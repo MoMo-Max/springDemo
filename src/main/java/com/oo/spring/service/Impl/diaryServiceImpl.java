@@ -2,6 +2,8 @@ package com.oo.spring.service.Impl;
 
 
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -123,11 +125,18 @@ public class diaryServiceImpl implements IdiaryService{
 	            Integer id = new Integer(userMap.get("id").toString());
 	            String title = userMap.get("title").toString();
 	            String context =  userMap.get("content").toString();
+	            Timestamp createDate = (Timestamp) userMap.get("createDate");
+	            
+	            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            
+	            String time = df.format(createDate);
+	            Timestamp ts = Timestamp.valueOf(time);
 	            
 	            diary diar = new diary();
 	            diar.setId(id);
 	            diar.setTitle(title);
 	            diar.setContent(context);
+	            diar.setCreateDate(ts);
 	            listadd.add(diar);       
 	            
 	        }

@@ -31,13 +31,16 @@ public class userProfileServiceImpl implements userProfileService{
 		Date date = new Date();
 	    try {
 	    	
-	    	sql="Insert into user(name,password,CreateDate) values(?,?,?)";
-	    	
+	    	sql="Insert into user(account,password,CreateDate,name,edu) values(?, ?, ?, ?, ?)";
+	    	int i = 0;
             conn = dataSource.getConnection();
             pst = conn.prepareStatement(sql);
-            pst.setString(1, user.getName());
-            pst.setString(2, user.getPsswd());
-            pst.setTimestamp(3, user.getDateTime());
+            pst.setString(++i, user.getAccount());
+            pst.setString(++i, user.getPsswd());
+            pst.setTimestamp(++i, user.getDateTime());
+            
+            pst.setString(++i, user.getName());
+            pst.setString(++i, user.getEdu());
             //Timestamp createDateTime; //建檔日期
             pst.executeUpdate();
             

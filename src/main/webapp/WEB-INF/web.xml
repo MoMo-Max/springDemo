@@ -16,6 +16,16 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- 測試 css  js  jpg
+  <servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.img</url-pattern>
+  </servlet-mapping>
+-->
+  
   <welcome-file-list>
     <welcome-file>/WEB-INF/views/indexForward.jsp</welcome-file>
   </welcome-file-list>

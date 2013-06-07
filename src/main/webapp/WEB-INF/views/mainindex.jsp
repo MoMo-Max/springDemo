@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.List" %>
+<%@ page import ="com.oo.spring.model.diary" %>
+<%
+	List diary = (List)request.getAttribute("Idiary");
+	
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,34 +23,20 @@
 				
 				<!-- end #sidebar -->
 				<div id="content">
+				<%
+				for(int i = 0; i< diary.size();i++){
+					diary di = (diary)(diary.get(i));
+				%>
+				
 					<div class="post">
-						<h2 class="title"><a href="#">Welcome to heavenly bliss!</a></h2>
-						<p class="meta"><span class="date">May 15, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
+						<h2 class="title"><a href="#"><%=di.getTitle()%></a></h2>
+						<p class="meta"><span class="date"><%=di.getCreateDate() %></span><span class="posted">Posted by <a href="#">Someone</a></span></p>
 						<div style="clear: both;">&nbsp;</div>
 						<div class="entry">
-							<p>This is <strong>Heavenly Bliss</strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.  The photo used in this template is from <a href="http://fotogrph.com/">Fotogrph</a>.  This free template is released under a <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attributions 2.5</a> license, so you’re pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :)</p>
-							<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.</p>
-							<p class="links"><a href="#" class="button">Nullam pretium nibh ut turpis</a></p>
+							<P><%=di.getContent() %></p>
 						</div>
 					</div>
-					<div class="post">
-						<h2 class="title"><a href="#">Lorem ipsum sed aliquam</a></h2>
-						<p class="meta"><span class="date">May 10, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
-						<div style="clear: both;">&nbsp;</div>
-						<div class="entry">
-							<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Suspendisse lacus turpis, cursus egestas at sem. Sed lacus. Donec lectus. </p>
-							<p class="links"><a href="#" class="button">Urnanet non molestie semper</a></p>
-						</div>
-					</div>
-					<div class="post">
-						<h2 class="title"><a href="#">Consecteteur hendrerit </a></h2>
-						<p class="meta"><span class="date">May 08, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
-						<div style="clear: both;">&nbsp;</div>
-						<div class="entry">
-							<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. </p>
-							<p class="links"><a href="#" class="button">Consectetuer adipiscing elit</a></p>
-						</div>
-					</div>
+					<%} %>
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
@@ -51,8 +44,8 @@
 				<div id="sidebar2">
 					<ul>
 						<li>
-							<h2>Aliquam tempus</h2>
-							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
+							<h2>日曆</h2>
+							<p>日曆區 http://www.dynarch.com/jscal/#sec5</p>
 						</li>
 						<li>
 							<h2>Suspendisse libero</h2>
@@ -66,12 +59,12 @@
 							</ul>
 						</li>
 						<li>
-							<h2>Aliquam mauris</h2>
+							<h2>文章排列搜尋</h2>
 							<ul>
-								<li><a href="#">Aliquam libero</a></li>
-								<li><a href="#">Consectetuer adipiscing elit</a></li>
-								<li><a href="#">Metus aliquam pellentesque</a></li>
-								<li><a href="#">Suspendisse iaculis mauris</a></li>
+								<li><a href="#">一月</a></li>
+								<li><a href="#">二月</a></li>
+								<li><a href="#">三月</a></li>
+								<li><a href="#">四月幾個章</a></li>
 								<li><a href="#">Urnanet non molestie semper</a></li>
 								<li><a href="#">Proin gravida orci porttitor</a></li>
 							</ul>

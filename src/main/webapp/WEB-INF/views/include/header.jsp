@@ -6,10 +6,10 @@
 	String loginName = (String)request.getSession().getAttribute("account");
 
 %> 
-   
+
 <head>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Archivo+Narrow:400,700" rel="stylesheet" type="text/css">
-<link href="http://localhost:8080/spring/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="<%=baseUrl %>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <div id="menu-wrapper">
 	<div id="menu">
@@ -31,7 +31,7 @@
 	<!-- end #menu --> 
 </div>
 <div id="banner-wrapper">
-	<div id="banner"><a href="#"><img src="http://localhost:8080/spring/images/img01.jpg" width="1200" height="300" alt="" /></a></div>
+	<div id="banner"><a href="#"><img src="<%=baseUrl %>/images/img01.jpg" width="1200" height="300" alt="" /></a></div>
 </div>
 <div id="header-wrapper">
 	<div id="header">

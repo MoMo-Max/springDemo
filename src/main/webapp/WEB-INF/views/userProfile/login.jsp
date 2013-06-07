@@ -11,18 +11,19 @@
 <%@ include file="../include/header.jsp" %>
 
 	<div id="wrapper"> 
-		
-			<center>
-					<div id="search" >
+				
+					<div id="page">
+						<div>
 						<form method="POST" action="<%=baseUrl %>/userProfile.do?act=login">
-							<div>
-								<input type="text" name="account" id="search-text" value="" /><br>
-								<input type="password" name="passwd" id="search-text" value="" /><br>
+						
+								帳號<input type="text" name="account" id="search-text" value="" /><br>
+								密碼<input type="password" name="passwd" id="search-text" value="" /><br>
+								<a href = "<%=baseUrl %>/userProfile.do?act=Add">註冊</a>
 								<input type="submit" id="search-submit" value="登入" />
-							</div>				
-						</form>
+						</form>	
+						</div>
 					</div>
-			</center>
+			
 	
 	</div>
 <%@ include file="../include/down.jsp" %>

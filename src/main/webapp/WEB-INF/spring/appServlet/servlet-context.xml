@@ -48,6 +48,14 @@
 		<property name="methodNameResolver"> 
             <ref bean="paraMethodResolver"/> 
         </property>  
+        
+        <!-- 以下是 service 注入 -->
+        
+        <property name ="idiaryService">
+        		<ref bean="diarySerivceImpl"/>
+        </property>
+
+        
     	<!-- 以下是頁面跳轉處理 -->	 
     	<property name="findSuccessView" value="mainindex" />
     </bean>
@@ -95,6 +103,7 @@
             	<ref bean="userProfileServiceImpl"/>
        		</property>
        		<property name="loginOK" value="/member/listPage"/>
+       		<property name="aboutMe" value="/userProfile/about"/>
     		
     </bean>
   	

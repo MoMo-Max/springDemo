@@ -29,11 +29,13 @@ public class userProfileFrontController extends MultiActionController{
 	private String successAdd;
 	private String SaveOK;
 	private String loginOK;
+	private String aboutMe;
 	
 	private String loginPage;
 	private IHello greetWebService;   // WebService 測試
 	
 	private userProfileService userProfileService;
+	
 	
 	public ModelAndView list(HttpServletRequest request,
 			HttpServletResponse response){
@@ -61,13 +63,19 @@ public class userProfileFrontController extends MultiActionController{
 		//TODO
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
-		String name=request.getParameter("user");
+		String account=request.getParameter("account");
 		String psswd=request.getParameter("psswd");
+		
+		String name = request.getParameter("name");
+		String edu  = request.getParameter("edu");
 		
 		userProfile user = new userProfile();
 		//user.setId(id);
-		user.setName(name);
+
+		user.setAccount(account);
 		user.setPsswd(psswd);
+		user.setName(name);
+		user.setEdu(edu);
 		user.setDateTime(now);
 		
 		System.out.println(user.getName());
@@ -116,6 +124,16 @@ public class userProfileFrontController extends MultiActionController{
 		
 			return new ModelAndView(new RedirectView(SaveOK));
 	}
+	public ModelAndView about(HttpServletRequest request,
+			HttpServletResponse response){
+		
+		System.out.println("This Abount");
+		
+		
+		return new ModelAndView(aboutMe);
+	}
+	
+	
 	
 	public String getSuccessAdd() {
 		return successAdd;
@@ -153,6 +171,12 @@ public class userProfileFrontController extends MultiActionController{
 	}
 	public void setLoginPage(String loginPage) {
 		this.loginPage = loginPage;
+	}
+	public String getAboutMe() {
+		return aboutMe;
+	}
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
 	}
 	
 	

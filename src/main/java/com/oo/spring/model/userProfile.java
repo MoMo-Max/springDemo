@@ -6,8 +6,12 @@ import java.util.Date;
 public class userProfile {
 	
 	private Integer id;
-	private String name;   //帳號
+	private String account;  //帳號
+
 	private String psswd;   //密碼
+	private String name;   //姓名
+	
+	private String edu;
 	private Timestamp dateTime;
 	//private Date brday;
 	
@@ -38,6 +42,18 @@ public class userProfile {
 	}
 	public void setDateTime(Timestamp dateTime) {
 		this.dateTime = dateTime;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public String getEdu() {
+		return edu;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public void setEdu(String edu) {
+		this.edu = edu;
 	}
 		
 	

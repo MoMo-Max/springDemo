@@ -131,8 +131,8 @@ a:hover {
 	background: #F5F0E7;
 	border: 1px solid #D7D0C0;
 	padding: 10px;
-	border-radius: 8px;
-	text-transform: lowercase;
+	border-radius: 50px;            /*半徑大小*/
+	text-transform: lowercase;    /*文字變換　　變小寫*/
 	font-family: 'Open Sans', sans-serif;
 	color: #454545;
 }
