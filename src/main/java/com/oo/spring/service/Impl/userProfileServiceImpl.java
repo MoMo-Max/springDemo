@@ -60,10 +60,7 @@ public class userProfileServiceImpl implements userProfileService{
 	    
 	    
 		System.out.println("this save");
-		System.out.println(user.getName());
-		System.out.println(user.getPsswd());
-		
-		
+
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.mvc.
                   multiaction.MultiActionController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.oo.spring.Util.FileUtil;
+import com.oo.spring.Util.MutiFileUpload;
 import com.oo.spring.WS.IHello;
 import com.oo.spring.model.userProfile;
 import com.oo.spring.service.userProfileService;
@@ -59,18 +62,34 @@ public class userProfileFrontController extends MultiActionController{
 		return new ModelAndView(successAdd);
 	}
 	public ModelAndView save(HttpServletRequest request,
-			HttpServletResponse response){
+			HttpServletResponse response) throws Exception{
 		//TODO
+		MutiFileUpload upload = new MutiFileUpload();
+		upload.parse(request);
+		
+		Map map =FileUtil.uploadFiles(upload);
+		
+		System.out.println("map="+map.get("account"));
+		
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
-		String account=request.getParameter("account");
-		String psswd=request.getParameter("psswd");
+		String account=upload.getParameter("account","utf-8");
 		
-		String name = request.getParameter("name");
-		String edu  = request.getParameter("edu");
+		System.out.println(account);
+		String psswd=upload.getParameter("psswd","utf-8");
+		System.out.println(psswd);
+		String name =upload.getParameter("name","utf-8");
+		System.out.println(name);
+		String edu  = upload.getParameter("edu","utf-8");
+		System.out.println(edu);
 		
 		userProfile user = new userProfile();
+		
 		//user.setId(id);
+		
+		//TODO
+		//Upload
+		//TODO
 
 		user.setAccount(account);
 		user.setPsswd(psswd);
